@@ -47,11 +47,52 @@ public class RecursionLab {
          good form to include an exit call when GUIing in Java
         */
 
-        System.out.println("3 factorial should be 6, and the system says it is: " + factorial(3));
-        System.out.println("4 factorial should be 24, and the system says it is: " + factorial(4));
-
+        //System.out.println("3 factorial should be 6, and the system says it is: " + factorial(3));
+        //System.out.println("4 factorial should be 24, and the system says it is: " + factorial(4));
+        long startTime = System.nanoTime();
         System.out.println("should be 4: " + pow(2,2));
+        long endTime = System.nanoTime();
+        long duration = (endTime - startTime);
+        System.out.println("time in ns: " + duration + "\n");
+
+        startTime = System.nanoTime();
         System.out.println("should be 27: " + pow(3, 3));
+        endTime = System.nanoTime();
+        duration = (endTime - startTime);
+        System.out.println("time in ns: " + duration + "\n");
+
+        startTime = System.nanoTime();
+        System.out.println("should be 4: " + fancyPow(2,2));
+        endTime = System.nanoTime();
+        duration = (endTime - startTime);
+        System.out.println("time in ns: " + duration + "\n");
+
+        startTime = System.nanoTime();
+        System.out.println("should be 27: " + fancyPow(3, 3));
+        endTime = System.nanoTime();
+        duration = (endTime - startTime);
+        System.out.println("time in ns: " + duration + "\n");
+
+        startTime = System.nanoTime();
+        System.out.println("should be 4: " + Math.pow(2,2));
+        endTime = System.nanoTime();
+        duration = (endTime - startTime);
+        System.out.println("time in ns: " + duration + "\n");
+
+        startTime = System.nanoTime();
+        System.out.println("should be 27: " + Math.pow(3, 3));
+        endTime = System.nanoTime();
+        duration = (endTime - startTime);
+        System.out.println("time in ns: " + duration + "\n");
+        /*
+        speed ranking:
+        1) fancy pow
+        2) pow
+        3) math.pow (whole extra place value)
+         */
+
+        System.out.println(fib(3));
+        System.out.println(fib(4));
         System.exit(0);
     }
 
@@ -148,8 +189,17 @@ public class RecursionLab {
         if(exp == 0){
             return 1;
         }else if(exp % 2 == 0){
-
+            return fancyPow(x, exp/2) * fancyPow(x, exp/2);
+        } else{
+            return x * pow(x, (exp - 1) / 2) * pow(x, (exp - 1) / 2);
         }
+    }
+
+    public static long fib(long n) {
+        if(n <= 1){
+            return n;
+        }
+        return fib(n - 1) + fib(n - 2);
     }
 
 }
