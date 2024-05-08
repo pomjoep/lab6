@@ -35,18 +35,23 @@ public class RecursionLab {
          * inside the recursiveSum() function
          *
          */
+        /*
         int solution = iterativeSum(20);
-        //int solution = recursiveSum( 20 );
+        int solution = recursiveSum( 20 );
+         Some GUI details
+                myArea.setText(("Result is : " + solution + "\n" + myArea.getText()));
+                JScrollPane myPane = new JScrollPane(myArea);
+                myPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+                myPane.setPreferredSize(new Dimension(600, 300));
+                JOptionPane.showMessageDialog(null, myPane);
+         good form to include an exit call when GUIing in Java
+        */
 
+        System.out.println("3 factorial should be 6, and the system says it is: " + factorial(3));
+        System.out.println("4 factorial should be 24, and the system says it is: " + factorial(4));
 
-        // Some GUI details
-        myArea.setText(("Result is : " + solution + "\n" + myArea.getText()));
-        JScrollPane myPane = new JScrollPane(myArea);
-        myPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        myPane.setPreferredSize(new Dimension(600, 300));
-        JOptionPane.showMessageDialog(null, myPane);
-
-        // good form to include an exit call when GUIing in Java
+        System.out.println("should be 4: " + pow(2,2));
+        System.out.println("should be 27: " + pow(3, 3));
         System.exit(0);
     }
 
@@ -122,4 +127,29 @@ public class RecursionLab {
 
         myArea.setText(text);
     }
+
+    public static int factorial(int n) {
+        if (n == 1) {  // Base case
+            return 1;
+        } else {
+            return n * factorial(n - 1);  // Recursive call
+        }
+    }
+
+    public static int pow(int x, int exp){
+        if(exp == 0){
+            return 1;
+        } else{
+            return x * pow(x, exp - 1);
+        }
+    }
+
+    public static int fancyPow(int x, int exp){
+        if(exp == 0){
+            return 1;
+        }else if(exp % 2 == 0){
+
+        }
+    }
+
 }
