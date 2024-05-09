@@ -168,7 +168,6 @@ public class RecursionLab {
 
         myArea.setText(text);
     }
-
     public static int factorial(int n) {
         if (n == 1) {  // Base case
             return 1;
