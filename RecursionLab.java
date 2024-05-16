@@ -19,6 +19,13 @@
  *
  *----------------------------------------------------------------------------------- */
 
+/**
+ * RecursionLab.java
+ * ========================
+ * @author M Mustafa Narejo
+ * @version 5/15/2024
+ */
+
 import java.awt.Dimension;
 
 import javax.swing.*;
@@ -35,64 +42,26 @@ public class RecursionLab {
          * inside the recursiveSum() function
          *
          */
-        /*
-        int solution = iterativeSum(20);
+        //int solution = iterativeSum(20);
         int solution = recursiveSum( 20 );
-         Some GUI details
-                myArea.setText(("Result is : " + solution + "\n" + myArea.getText()));
-                JScrollPane myPane = new JScrollPane(myArea);
-                myPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-                myPane.setPreferredSize(new Dimension(600, 300));
-                JOptionPane.showMessageDialog(null, myPane);
-         good form to include an exit call when GUIing in Java
-        */
+        System.out.println("Factorial of 5 (recursive): " + factorialRecursive(5)); // 120
+        System.out.println("Factorial of 5 (iterative): " + factorialIterative(5));
 
-        //System.out.println("3 factorial should be 6, and the system says it is: " + factorial(3));
-        //System.out.println("4 factorial should be 24, and the system says it is: " + factorial(4));
-        long startTime = System.nanoTime();
-        System.out.println("should be 4: " + pow(2,2));
-        long endTime = System.nanoTime();
-        long duration = (endTime - startTime);
-        System.out.println("time in ns: " + duration + "\n");
+        System.out.println("2^3 (brute-force recursive): " + powerRecursive(2, 3)); // 8
+        System.out.println("2^3 (optimized recursive): " + powerOptimized(2, 3));
 
-        startTime = System.nanoTime();
-        System.out.println("should be 27: " + pow(3, 3));
-        endTime = System.nanoTime();
-        duration = (endTime - startTime);
-        System.out.println("time in ns: " + duration + "\n");
+        System.out.println("Fibonacci of 7: " + fibonacci(7));
 
-        startTime = System.nanoTime();
-        System.out.println("should be 4: " + fancyPow(2,2));
-        endTime = System.nanoTime();
-        duration = (endTime - startTime);
-        System.out.println("time in ns: " + duration + "\n");
+        System.out.println("Combination of 5 choose 3: " + combinations(5, 3));
 
-        startTime = System.nanoTime();
-        System.out.println("should be 27: " + fancyPow(3, 3));
-        endTime = System.nanoTime();
-        duration = (endTime - startTime);
-        System.out.println("time in ns: " + duration + "\n");
+        // Some GUI details
+        myArea.setText(("Result is : " + solution + "\n" + myArea.getText()));
+        JScrollPane myPane = new JScrollPane(myArea);
+        myPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        myPane.setPreferredSize(new Dimension(600, 300));
+        JOptionPane.showMessageDialog(null, myPane);
 
-        startTime = System.nanoTime();
-        System.out.println("should be 4: " + Math.pow(2,2));
-        endTime = System.nanoTime();
-        duration = (endTime - startTime);
-        System.out.println("time in ns: " + duration + "\n");
-
-        startTime = System.nanoTime();
-        System.out.println("should be 27: " + Math.pow(3, 3));
-        endTime = System.nanoTime();
-        duration = (endTime - startTime);
-        System.out.println("time in ns: " + duration + "\n");
-        /*
-        speed ranking:
-        1) fancy pow
-        2) pow
-        3) math.pow (whole extra place value)
-         */
-
-        System.out.println(fib(3));
-        System.out.println(fib(4));
+        // good form to include an exit call when GUIing in Java
         System.exit(0);
     }
 
@@ -168,37 +137,56 @@ public class RecursionLab {
 
         myArea.setText(text);
     }
-    public static int factorial(int n) {
-        if (n == 1) {  // Base case
+
+    public static int factorialRecursive(int n) {
+        if (n == 1) {
             return 1;
         } else {
-            return n * factorial(n - 1);  // Recursive call
+            return n * factorialRecursive(n - 1);
         }
     }
 
-    public static int pow(int x, int exp){
-        if(exp == 0){
+    public static int factorialIterative(int n) {
+        int result = 1;
+        for (int i = n; i > 1; i--) {
+            result *= i;
+        }
+        return result;
+    }
+
+    public static int powerRecursive(int x, int n) {
+        if (n == 0) {
             return 1;
-        } else{
-            return x * pow(x, exp - 1);
+        } else {
+            return x * powerRecursive(x, n - 1);
         }
     }
-
-    public static int fancyPow(int x, int exp){
-        if(exp == 0){
+    public static int powerOptimized(int x, int n) {
+        if (n == 0) {
             return 1;
-        }else if(exp % 2 == 0){
-            return fancyPow(x, exp/2) * fancyPow(x, exp/2);
-        } else{
-            return x * pow(x, (exp - 1) / 2) * pow(x, (exp - 1) / 2);
+        }
+        int halfPower = powerOptimized(x, n / 2);
+        if (n % 2 == 0) {
+            return halfPower * halfPower;
+        } else {
+            return x * halfPower * halfPower;
         }
     }
 
-    public static long fib(long n) {
-        if(n <= 1){
-            return n;
+    public static int fibonacci(int n) {
+        if (n <= 2) {
+            return 1;
+        } else {
+            return fibonacci(n - 1) + fibonacci(n - 2);
         }
-        return fib(n - 1) + fib(n - 2);
+    }
+
+    public static int combinations(int n, int r) {
+        if (r == 0 || r == n) {
+            return 1;
+        } else {
+            return combinations(n - 1, r - 1) + combinations(n - 1, r);
+        }
     }
 
 }
