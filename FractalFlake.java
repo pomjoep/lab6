@@ -2,10 +2,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 /**
- *  FractalFlake.java
- *  ===============
- * @author M Mustafa Narejo
- * @version 5/15/2024
+ * Quinn Epstein
  */
 public class FractalFlake extends Shape {
     private final int limit;

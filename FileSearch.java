@@ -1,10 +1,7 @@
 import java.io.File;
 
 /**
- *  FileSearch.java
- *  ===============
- * @author M Mustafa Narejo
- * @version 5/15/2024
+ * Quinn Epstein
  */
 public class FileSearch {
     public static void main(String[] args) {
